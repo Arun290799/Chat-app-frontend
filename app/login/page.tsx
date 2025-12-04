@@ -29,6 +29,7 @@ export default function LoginPage() {
 			const redirectTo = searchParams.get("redirect") || "/chat";
 			router.push(redirectTo);
 		} catch (err) {
+			console.log("login error",err);
 			setError("Invalid email or password");
 			setIsSubmitting(false);
 		}
