@@ -32,16 +32,27 @@ async function handleProxyRequest(request: NextRequest, method: string) {
   const headers = new Headers(request.headers);
   headers.set("Content-Type", "application/json");
   headers.delete("content-length");
+  try{
+    const response = await fetch(url.toString(), {
+      method,
+      headers,
+      body: rawBody,
+      credentials: "include",
+    });
+    const newHeaders = new Headers(response.headers);
 
-  const response = await fetch(url.toString(), {
-    method,
-    headers,
-    body: rawBody,
-    credentials: "include",
-  });
-
-  return new NextResponse(response.body, {
-    status: response.status,
-    headers: response.headers,
-  });
+    // Remove problematic headers
+    newHeaders.delete("content-length");
+    newHeaders.delete("transfer-encoding");
+    newHeaders.delete("content-encoding");
+   
+    return new NextResponse(response.body, {
+      status: response.status,
+      headers: newHeaders,
+    });
+  }
+  catch(err){
+    console.log("proxy error",err);
+    return NextResponse.json({ error: (err as Error).message }, { status: 500 });
+  }
 }
