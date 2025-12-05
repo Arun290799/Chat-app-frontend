@@ -25,7 +25,7 @@ export default function RegisterPage() {
 		setIsSubmitting(true);
 		try {
 			await register(name, email, password);
-			router.push("/dashboard");
+			router.push("/chat");
 		} catch (err) {
 			setError("Registration failed. Please try again.");
 			setIsSubmitting(false);
