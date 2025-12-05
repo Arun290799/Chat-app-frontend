@@ -141,6 +141,7 @@ export default function ChatPage() {
 		if (!socket || !currentUser) return;
 
 		const handleNewMessage = (message: Message) => {
+			console.log("new message", message);
 			const chatKey = [message.senderId, currentUser._id].sort().join("-");
 			setMessages((prev) => ({
 				...prev,
@@ -177,7 +178,10 @@ export default function ChatPage() {
 
 		const handleMessageSent = (message: Message) => {
 			console.log("message sent", message);
-			const chatKey = [message.receiverId, currentUser._id].sort().join("-");
+			console.log("currentUser", currentUser);
+			const chatKey = [currentUser._id, message.receiverId].sort().join("-");
+			console.log("chatKey", chatKey);
+			console.log("message", message);
 			setMessages((prev) => ({
 				...prev,
 				[chatKey]: [...(prev[chatKey] || []), message],

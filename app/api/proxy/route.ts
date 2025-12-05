@@ -16,7 +16,7 @@ export async function DELETE(request: NextRequest) {
 }
 
 async function handleProxyRequest(request: NextRequest, method: string) {
-  const API_URL = process.env.BACKEND_API_URL;
+  const API_URL = process.env.NEXT_PUBLIC_BACKEND_API_URL;
   const endpoint = request.nextUrl.searchParams.get("endpoint");
 
   if (!endpoint) {

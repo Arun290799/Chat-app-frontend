@@ -50,7 +50,7 @@ pnpm install
 3. Set up environment variables:
 Create a `.env.local` file in the root directory:
 ```env
-BACKEND_API_URL=http://localhost:5000
+NEXT_PUBLIC_BACKEND_API_URL=http://localhost:5000
 ```
 
 Replace `http://localhost:5000` with your backend API URL.
@@ -102,7 +102,7 @@ This application requires a backend API server. The frontend communicates with t
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `BACKEND_API_URL` | Backend API server URL | `http://localhost:5000` |
+| `NEXT_PUBLIC_BACKEND_API_URL` | Backend API server URL | `http://localhost:5000` |
 
 
 ## Troubleshooting
@@ -111,7 +111,7 @@ This application requires a backend API server. The frontend communicates with t
 
 If you're experiencing socket connection problems:
 
-1. Verify `BACKEND_API_URL` is correctly set in `.env.local`
+1. Verify `NEXT_PUBLIC_BACKEND_API_URL` is correctly set in `.env.local`
 2. Ensure the backend server is running
 3. Check browser console for connection errors
 4. Verify CORS settings on the backend
